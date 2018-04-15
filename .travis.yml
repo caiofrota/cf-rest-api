@@ -8,7 +8,7 @@ script:
   - mvn clean test jacoco:report
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -t bb3650f1-e26d-424d-8691-999f643be5ae
+  - bash <(curl -s https://codecov.io/bash) -t 7a7ab95b-b142-4f88-8027-093c2533c629
 
 cache:
   directories:
