@@ -16,8 +16,8 @@ import com.cftechsol.rest.exceptions.api.ApiError;
  * Handler to get custom exceptions.
  * 
  * @author Caio Frota {@literal <contact@cftechsol.com>}
- * @version 1.0
- * @since 1.0
+ * @version 1.0.0
+ * @since 1.0.0
  */
 @Order(Ordered.LOWEST_PRECEDENCE - 1000)
 @ControllerAdvice
