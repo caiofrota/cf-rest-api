@@ -49,7 +49,7 @@
 			<artifactId>gson</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<!-- CF Tech - Data -->
+		<!-- CF Tech - Data API -->
 		<dependency>
 			<groupId>com.cftechsol</groupId>
 			<artifactId>cf-data-api</artifactId>
