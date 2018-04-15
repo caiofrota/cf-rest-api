@@ -29,13 +29,13 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-            <scope>provided</scope>
+			<scope>provided</scope>
 		</dependency>
 		<!-- Spring Boot - Data JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-            <scope>provided</scope>
+			<scope>provided</scope>
 		</dependency>
 		<!-- Lombok -->
 		<dependency>
@@ -54,13 +54,13 @@
 			<groupId>com.cftechsol</groupId>
 			<artifactId>cf-data-api</artifactId>
 			<version>1.0.0</version>
-            <scope>provided</scope>
+			<scope>provided</scope>
 		</dependency>
 		<!-- Spring Boot - Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -72,12 +72,12 @@
 			<url>http://projectlombok.org/mavenrepo</url>
 		</repository>
 		<!-- CF Tech -->
-        <repository>
-            <id>cftechsol.com</id>
-            <url>https://maven2.cftechsol.com</url>
-        </repository>
+		<repository>
+			<id>cftechsol.com</id>
+			<url>https://maven2.cftechsol.com</url>
+		</repository>
 	</repositories>
-	
+
 	<!-- Developers specification -->
 	<developers>
 		<developer>
