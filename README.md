@@ -2,7 +2,7 @@
 
 [![Build](https://img.shields.io/travis/caiofrota/cf-rest-api.svg)](#)
 [![Coverage](https://codecov.io/gh/caiofrota/cf-rest-api/branch/master/graph/badge.svg)](#)
-[![GitHub issues](https://img.shields.io/github/issues/caiofrota/cf-rest.svg)](https://github.com/caiofrota/cf-rest-api/issues)
+[![GitHub issues](https://img.shields.io/github/issues/caiofrota/cf-rest-api.svg)](https://github.com/caiofrota/cf-rest-api/issues)
 [![Fork](https://img.shields.io/github/forks/caiofrota/cf-rest-api.svg)](#)
 [![Stars](https://img.shields.io/github/stars/caiofrota/cf-rest-api.svg)](#)
 [![License](https://img.shields.io/github/license/caiofrota/cf-rest-api.svg)](#)
