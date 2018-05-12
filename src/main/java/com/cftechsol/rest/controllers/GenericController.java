@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cftechsol.data.services.GenericService;
 
@@ -64,8 +63,8 @@ public class GenericController<S extends GenericService<? extends JpaRepository<
 	}
 
 	@DeleteMapping
-	public void delete(@RequestParam PK id) throws Exception {
-		this.doDelete(id);
+	public void delete(@RequestBody E object) throws Exception {
+		this.doDelete(object);
 	}
 
 	/**
@@ -97,12 +96,12 @@ public class GenericController<S extends GenericService<? extends JpaRepository<
 	/**
 	 * Delete object by Primary Key.
 	 * 
-	 * @param id
-	 *            Primary Key.
+	 * @param object
+	 *            Object.
 	 * @throws Exception
 	 */
-	protected void doDelete(PK id) throws Exception {
-		this.service.delete(id);
+	protected void doDelete(E object) throws Exception {
+		this.service.delete(object);
 	}
 
 }
