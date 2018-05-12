@@ -39,7 +39,7 @@ public class GenericControllerTest {
 	private ExampleService service;
 
 	private String name = "Example";
-	private String newName = "Example Chaged";
+	private String newName = "Example Changed";
 
 	ExampleAuditEntity example = new ExampleAuditEntity(name, null);
 	ExampleAuditEntity exampleUpdate = new ExampleAuditEntity(newName, null);
@@ -55,6 +55,7 @@ public class GenericControllerTest {
 		Mockito.when(service.findAll()).thenReturn(exampleList);
 		Mockito.when(service.findById(1l)).thenReturn(example);
 		Mockito.when(service.save(exampleUpdate)).thenReturn(exampleUpdate);
+		Mockito.when(service.save(exampleUpdate, 0l)).thenReturn(exampleUpdate);
 	}
 
 	@Test
@@ -75,6 +76,15 @@ public class GenericControllerTest {
 	public void shouldUpdateOneById() throws Exception {
 		Gson gson = new Gson();
 		mockMvc.perform(MockMvcRequestBuilders.post("/example").header("Origin", "*")
+				.contentType(MediaType.APPLICATION_JSON_VALUE).content(gson.toJson(exampleUpdate)))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString(newName)));
+	}
+	
+	@Test
+	public void shouldUpdateUntrackedOneById() throws Exception {
+		Gson gson = new Gson();
+		mockMvc.perform(MockMvcRequestBuilders.post("/example/untrackedSave").header("Origin", "*")
 				.contentType(MediaType.APPLICATION_JSON_VALUE).content(gson.toJson(exampleUpdate)))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString(newName)));

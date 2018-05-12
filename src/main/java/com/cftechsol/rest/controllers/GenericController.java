@@ -15,7 +15,7 @@ import com.cftechsol.data.services.GenericService;
 
 /**
  * Generic Controller with common methods to accelerate the creation of
- * services.
+ * controller.
  * 
  * @author Caio Frota {@literal <contact@cftechsol.com>}
  * @version 1.0.0
@@ -32,6 +32,7 @@ public class GenericController<S extends GenericService<? extends JpaRepository<
 
 	@Autowired
 	protected S service;
+	protected boolean audit = true;
 
 	@GetMapping
 	public List<E> findAll() throws Exception {
@@ -43,14 +44,65 @@ public class GenericController<S extends GenericService<? extends JpaRepository<
 		return service.findById(id);
 	}
 
+	/**
+	 * Call the save object. If the audit is true, timestamps will be saved and
+	 * persistence user will be zero, if you want to control the persistence user,
+	 * use GenericSecurityController from cf-security-api.
+	 * 
+	 * @param object
+	 *            Object.
+	 * @return Object saved.
+	 * @throws Exception
+	 */
 	@PostMapping
 	public E save(@RequestBody E object) throws Exception {
-		return service.save(object);
+		if (audit) {
+			return this.doSave(object, 0l);
+		} else {
+			return this.doSave(object);
+		}
 	}
 
 	@DeleteMapping
 	public void delete(@RequestParam PK id) throws Exception {
-		service.delete(id);
+		this.doDelete(id);
+	}
+
+	/**
+	 * Save audit object.
+	 * 
+	 * @param object
+	 *            Object.
+	 * @param id
+	 *            Persistence user.
+	 * @return Object saved.
+	 * @throws Exception
+	 */
+	protected E doSave(E object, long id) throws Exception {
+		return service.save(object, id);
+	}
+
+	/**
+	 * Save object.
+	 * 
+	 * @param object
+	 *            Object.
+	 * @return Object saved.
+	 * @throws Exception
+	 */
+	protected E doSave(E object) throws Exception {
+		return service.save(object);
+	}
+
+	/**
+	 * Delete object by Primary Key.
+	 * 
+	 * @param id
+	 *            Primary Key.
+	 * @throws Exception
+	 */
+	protected void doDelete(PK id) throws Exception {
+		this.service.delete(id);
 	}
 
 }

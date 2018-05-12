@@ -27,6 +27,18 @@ import com.cftechsol.rest.exceptions.NonUniqueException;
 @RestController
 @RequestMapping(path = "/example", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ExampleController extends GenericController<ExampleService, ExampleAuditEntity, Long> {
+	
+	public ExampleController() {
+		super.audit = false;
+	}
+	
+	@PostMapping(path = "/untrackedSave")
+	public ExampleAuditEntity untrackedSave(@RequestBody ExampleAuditEntity object) throws Exception {
+		super.audit = true;
+		object = super.save(object);
+		super.audit = false;
+		return object;
+	}
 
 	@GetMapping(path = "/exception")
 	public void exeption() throws Exception {
