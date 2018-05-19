@@ -94,7 +94,7 @@ public class GenericControllerTest {
 	public void shouldDelete() throws Exception {
 		Gson gson = new Gson();
 		mockMvc.perform(MockMvcRequestBuilders.delete("/example").header("Origin", "*")
-				.contentType(MediaType.APPLICATION_JSON_VALUE).content(gson.toJson(exampleUpdate)))
+				.contentType(MediaType.APPLICATION_JSON_VALUE).content(gson.toJson(exampleUpdate.getId())))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("")));
 	}

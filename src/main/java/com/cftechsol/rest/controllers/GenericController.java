@@ -63,44 +63,19 @@ public class GenericController<S extends GenericService<? extends JpaRepository<
 	}
 
 	@DeleteMapping
-	public void delete(@RequestBody E object) throws Exception {
-		this.doDelete(object);
+	public void delete(@RequestBody PK object) throws Exception {
+		this.doDelete((PK) object);
 	}
 
-	/**
-	 * Save audit object.
-	 * 
-	 * @param object
-	 *            Object.
-	 * @param id
-	 *            Persistence user.
-	 * @return Object saved.
-	 * @throws Exception
-	 */
-	protected E doSave(E object, long id) throws Exception {
-		return service.save(object, id);
-	}
-
-	/**
-	 * Save object.
-	 * 
-	 * @param object
-	 *            Object.
-	 * @return Object saved.
-	 * @throws Exception
-	 */
 	protected E doSave(E object) throws Exception {
 		return service.save(object);
 	}
 
-	/**
-	 * Delete object by Primary Key.
-	 * 
-	 * @param object
-	 *            Object.
-	 * @throws Exception
-	 */
-	protected void doDelete(E object) throws Exception {
+	protected E doSave(E object, long id) throws Exception {
+		return service.save(object, id);
+	}
+
+	protected void doDelete(PK object) throws Exception {
 		this.service.delete(object);
 	}
 
