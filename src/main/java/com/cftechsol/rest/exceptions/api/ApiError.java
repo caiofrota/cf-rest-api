@@ -28,6 +28,7 @@ public class ApiError {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
 	private LocalDateTime timestamp;
 	private String message;
+	private String messageRef;
 	private List<ApiSubError> errors;
 
 	private ApiError() {
@@ -43,6 +44,13 @@ public class ApiError {
 		this();
 		this.status = status;
 		this.message = message;
+	}
+
+	public ApiError(HttpStatus status, String message, String messageRef) {
+		this();
+		this.status = status;
+		this.message = message;
+		this.messageRef = messageRef;
 	}
 
 	public void addSubError(ApiSubError subError) {

@@ -123,4 +123,23 @@ public class GenericControllerTest {
 				.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("name")));
 	}
 
+	@Test
+	public void shouldGetBadRequestException() throws Exception {
+		Gson gson = new Gson();
+		ExampleAuditEntity validationExample = new ExampleAuditEntity();
+		mockMvc.perform(MockMvcRequestBuilders.post("/example/badRequestException").header("Origin", "*")
+				.contentType(MediaType.APPLICATION_JSON_VALUE).content(gson.toJson(validationExample)))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
+	
+	@Test
+	public void shouldGetBadRequestMessageRefException() throws Exception {
+		Gson gson = new Gson();
+		ExampleAuditEntity validationExample = new ExampleAuditEntity();
+		mockMvc.perform(MockMvcRequestBuilders.post("/example/badRequestMessageRefException").header("Origin", "*")
+				.contentType(MediaType.APPLICATION_JSON_VALUE).content(gson.toJson(validationExample)))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest())
+				.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("CF-99999")));
+	}
+
 }

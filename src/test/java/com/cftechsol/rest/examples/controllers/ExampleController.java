@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cftechsol.rest.controllers.GenericController;
 import com.cftechsol.rest.examples.entities.ExampleAuditEntity;
 import com.cftechsol.rest.examples.services.ExampleService;
+import com.cftechsol.rest.exceptions.BadRequestException;
+import com.cftechsol.rest.exceptions.CFMessages;
 import com.cftechsol.rest.exceptions.NonUniqueException;
 
 /**
@@ -55,6 +57,16 @@ public class ExampleController extends GenericController<ExampleService, Example
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
 		throw new ConstraintViolationException(validator.validate(object));
+	}
+
+	@PostMapping(path = "/badRequestException")
+	public void badRequestException(@RequestBody ExampleAuditEntity object) throws Exception {
+		throw new BadRequestException(CFMessages.ERROR.getMessage());
+	}
+
+	@PostMapping(path = "/badRequestMessageRefException")
+	public void badRequestMessageRefException(@RequestBody ExampleAuditEntity object) throws Exception {
+		throw new BadRequestException(CFMessages.ERROR.getMessage(), CFMessages.ERROR.getMessageRef());
 	}
 
 }
